@@ -74,13 +74,13 @@
                             var dozenDeviation = expectedOccurences - dozensCombinationToCount[c];
                             var columnDeviation = expectedOccurences - columnsCombinationToCount[c];
 
-                            if (-dozenDeviation > maxDozenDeviation)
+                            if (dozenDeviation > maxDozenDeviation)
                             {
                                 maxDozenDeviation = dozenDeviation;
                                 mostDeviatedDozenCombo = c;
                             }
 
-                            if (-columnDeviation > maxColumnDeviation)
+                            if (columnDeviation > maxColumnDeviation)
                             {
                                 maxColumnDeviation = columnDeviation;
                                 mostDeviatedColumnCombo = c;
