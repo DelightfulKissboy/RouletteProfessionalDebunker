@@ -70,7 +70,7 @@
                         var mostDeviatedColumnCombo = 0;
                         for (int c = 2; c <= 6; c++)
                         {
-                            var expectedOccurences = GetExpectedOccurencesOfCombination(c, spins.Count);
+                            var expectedOccurences = GetExpectedOccurencesOfCombination(c, GetTotalDataPoints(dozensCombinationToCount));
                             var dozenDeviation = expectedOccurences - dozensCombinationToCount[c];
                             var columnDeviation = expectedOccurences - columnsCombinationToCount[c];
 
@@ -92,7 +92,7 @@
                         var prevColumn = GetColumn(prevSpin);
 
                         // Check if result is sufficiently "far behind." If so, place bets.
-                        var expectedDozenComboOccurence = GetExpectedOccurencesOfCombination(mostDeviatedDozenCombo, spins.Count);
+                        var expectedDozenComboOccurence = GetExpectedOccurencesOfCombination(mostDeviatedDozenCombo, GetTotalDataPoints(dozensCombinationToCount));
                         var dozenDeviationPercentage = (expectedDozenComboOccurence - maxDozenDeviation) / expectedDozenComboOccurence;
                         if (dozenDeviationPercentage >= MinDeviationForBet)
                         {
@@ -106,7 +106,7 @@
                             }
                         }
 
-                        var expectedColumnComboOccurence = GetExpectedOccurencesOfCombination(mostDeviatedColumnCombo, spins.Count);
+                        var expectedColumnComboOccurence = GetExpectedOccurencesOfCombination(mostDeviatedColumnCombo, GetTotalDataPoints(dozensCombinationToCount));
                         var columnDeviationPercentage = (expectedColumnComboOccurence - maxColumnDeviation) / expectedColumnComboOccurence;
                         if (maxColumnDeviation >= MinDeviationForBet)
                         {
@@ -247,6 +247,17 @@
             }
 
             return 0;
+        }
+
+        public static int GetTotalDataPoints(IDictionary<int, int> counts)
+        {
+            var total = 0;
+            foreach (var comboToCount in counts)
+            {
+                total += comboToCount.Value;
+            }
+        
+            return total;
         }
 
         public static bool PopulateCombinationData(
