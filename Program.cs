@@ -233,7 +233,7 @@
                     break;
             }
 
-            return factor * (numSpins - 1) / 9.0;
+            return factor * (numSpins) / 9.0;
         }
 
         public static int GetLastNonZeroSpin(LinkedListNode<int> curSpin)
@@ -275,7 +275,7 @@
             dozensCombinationToCount[prevDozen + curDozen]++;
 
             var prevColumn = GetColumn(prev);
-            var curColumn = GetColumn(prev);
+            var curColumn = GetColumn(cur);
 
             columnsCombinationToCount[prevDozen + curDozen]++;
 
