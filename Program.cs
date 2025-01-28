@@ -277,7 +277,7 @@
             var prevColumn = GetColumn(prev);
             var curColumn = GetColumn(cur);
 
-            columnsCombinationToCount[prevDozen + curDozen]++;
+            columnsCombinationToCount[prevColumn + curColumn]++;
 
             return true;
         }
